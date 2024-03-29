@@ -12,7 +12,7 @@ export default function ProductAll() {
     const getProducts = async () => {
       let searchQuery = query.get("q") || ""; //|| "";가 없으면 화면에 안 나옴
       console.log(searchQuery);
-      let url = new URL(` https://my-json-server.typicode.com/redhero8830/shopping-mall-server/products?q=${searchQuery}`);
+      let url = new URL(`https://my-json-server.typicode.com/redhero8830/shopping-mall-server/products?q=${searchQuery}`);
       //q랑 query를 보내주면 json server에서 알아서 서치를 해줌
       let response = await fetch(url);
       let data = await response.json();

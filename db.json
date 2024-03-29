@@ -3,7 +3,7 @@
     {
       "id": 0,
       "img": "https://noona-hnm.netlify.app/pattern-jacket.jpeg",
-      "title": "벨티드 트윌 코트",
+      "title": "벨티드 트윌 coat",
       "price": 99900,
       "choice": true,
       "new": true,
@@ -30,7 +30,7 @@
     {
       "id": 3,
       "img": "https://noona-hnm.netlify.app/cottom-dress.jpeg",
-      "title": "퍼프 슬리브 드레스",
+      "title": "퍼프 슬리브 dress",
       "price": 39900,
       "choice": false,
       "new": true,
@@ -39,7 +39,7 @@
     {
       "id": 4,
       "img": "https://noona-hnm.netlify.app/shirt-dress.jpeg",
-      "title": "프릴 디테일 드레스",
+      "title": "프릴 디테일 dress",
       "price": 29900,
       "choice": true,
       "new": false,
