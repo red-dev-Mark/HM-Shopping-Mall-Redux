@@ -5,7 +5,8 @@ import { useSearchParams } from "react-router-dom";
 
 export default function ProductAll() {
   const [productList, setProductList] = useState([]);
-  const [query, setQuery] = useSearchParams();
+  // const [query, setQuery] = useSearchParams(); 배포를 위한 상태함수 삭제
+  const [query] = useSearchParams();
 
   
   useEffect(() => {
