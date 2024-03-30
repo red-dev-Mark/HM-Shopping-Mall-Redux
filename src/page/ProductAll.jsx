@@ -33,7 +33,7 @@ export default function ProductAll() {
           {/* MAX : 12 */}
           {productList.map((menu, index) => {
             return (
-              <Col key={index} lg={3} md={4} sm={6} xs={12}>
+              <Col key={index} lg={3} md={4} sm={12} xs={12}>
                 {/* 화면에 따른 반응형 */}
                 <ProductCard item={menu} />
               </Col>

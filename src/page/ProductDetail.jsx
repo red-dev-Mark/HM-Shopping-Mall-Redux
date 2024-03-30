@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Col, Container, Row } from "react-bootstrap";
+import { Button, Col, Container, Row } from "react-bootstrap";
 import { useParams } from "react-router-dom";
 
 export default function ProductDetail() {
@@ -19,15 +19,16 @@ export default function ProductDetail() {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   return (
-    <Container>
+    <Container className="product-detail-container">
       <Row>
         <Col>
-          <img src={product?.img} alt="img" />
+          <img src={product?.img} alt="Product" className="product-image" />
         </Col>
-        <Col>
-          <h2>{product?.title}</h2>
-          <h3>{product?.price}</h3>
-          <h4>{product?.size}</h4>
+        <Col className="product-info">
+          <h2 className="product-title">{product?.title}</h2>
+          <h3 className="product-price">{product?.price}</h3>
+          <h4 className="product-details">Size: {product?.size}</h4>
+          <Button variant="danger" className="product-button">장바구니 추가하기</Button>
         </Col>
       </Row>
     </Container>

@@ -31,7 +31,7 @@ export default function Navbar({ authenticate }) {
   return (
     <div>
       <div className="login-button" onClick={goToLogin}>
-        <FontAwesomeIcon icon={faUser} />
+        <FontAwesomeIcon icon={faUser} className="login-icon"/>
         <div>로그인</div>
       </div>
       <div className="logo">
