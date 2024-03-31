@@ -8,7 +8,9 @@ export default function ProductDetail() {
 
   useEffect(() => {
     const getProductDetail = async () => {
-      let url = new URL(`https://my-json-server.typicode.com/redhero8830/shopping-mall-server/products/${id}`);
+      let url = new URL(
+        `https://my-json-server.typicode.com/redhero8830/shopping-mall-server/products/${id}`
+      );
       const response = await fetch(url);
       const data = await response.json();
       // console.log(data);
@@ -26,9 +28,19 @@ export default function ProductDetail() {
         </Col>
         <Col className="product-info">
           <h2 className="product-title">{product?.title}</h2>
-          <h3 className="product-price">{product?.price}</h3>
-          <h4 className="product-details">Size: {product?.size}</h4>
-          <Button variant="danger" className="product-button">장바구니 추가하기</Button>
+          <h3 className="product-price">
+            {`${product?.price.toLocaleString("ko-KR")}원`}
+          </h3>
+          <h4 className="product-details">
+            Size:{" "}
+            {product?.size.map((size) => {
+              if (size !== "L") return size + " / ";
+              else return size;
+            })}
+          </h4>
+          <Button variant="danger" className="product-button">
+            장바구니 추가하기
+          </Button>
         </Col>
       </Row>
     </Container>

@@ -15,7 +15,7 @@ export default function Login({ setAuthenticate }) {
     <Container
       style={{ display: "flex", justifyContent: "center", marginTop: "60px" }}
     >
-      <Col lg={6} md={6} sm={12} xs={12}>
+      <Col lg={6} md={6} sm={12} xs={12} className="login-container">
         <Form
           onSubmit={(event) => {
             //여기서 event는 폼이 제출됐을 때의 이벤트
