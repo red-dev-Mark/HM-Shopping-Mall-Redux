@@ -74,6 +74,7 @@ body {
   padding: 1rem;
   margin: 20px;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 .product-card div {
   margin: 3px 0;
@@ -98,18 +99,6 @@ body {
 .product-card-price {
   color: #666;
   margin-top: 0.5rem;
-}
-
-.product-card img {
-  width: 100%;
-  height: auto;
-  cursor: pointer;
-}
-
-.product-card img:hover {
-  transform: scale(1.05);
-  transition: transform 0.3s ease;
-  opacity: 0.9;
 }
 
 /* ProductDetail */
