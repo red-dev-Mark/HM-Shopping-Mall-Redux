@@ -15,7 +15,7 @@ export default function App() {
   }, [authenticate]);
   return (
     <div>
-      <Navbar authenticate={authenticate} />
+      <Navbar authenticate={authenticate} setAuthenticate={setAuthenticate}/>
       {/* 페이지 3장 안에 모두 네비게이션 바를 만들어도 되나, 코드 중복! */}
       {/* 따라서 위의 <Navbar /> 밑에 페이지 3장 배치 */}
       <Routes>
