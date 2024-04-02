@@ -6,25 +6,24 @@ import { Container, Row, Col } from "react-bootstrap";
 import { useSearchParams } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
+import { productAction } from "../redux/actions/productAction";
+import { useDispatch, useSelector } from "react-redux";
+
 export default function ProductAll() {
-  const [productList, setProductList] = useState([]);
+  // const [productList] = useState([]);
+  const productList = useSelector((state) => state.product.productList);
   // const [query, setQuery] = useSearchParams(); 배포를 위한 상태함수 삭제
   const [query] = useSearchParams();
+
+  const dispatch = useDispatch();
 
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getProducts = async () => {
+    const getProducts = () => {
       let searchQuery = query.get("q") || ""; //|| "";가 없으면 화면에 안 나옴
       console.log(searchQuery);
-      let url = new URL(
-        `https://my-json-server.typicode.com/redhero8830/shopping-mall-server/products?q=${searchQuery}`
-      );
-      //q랑 query를 보내주면 json server에서 알아서 서치를 해줌
-      let response = await fetch(url);
-      let data = await response.json();
-      // console.log(data);
-      setProductList(data);
+      dispatch(productAction.getProducts(searchQuery)); //여기서 action을 던져주면 바로 스토어로 감 -> 미들웨어를 거쳐야 함
     };
 
     getProducts();
@@ -62,7 +61,7 @@ export default function ProductAll() {
       <Container>
         <Row>
           {/* MAX : 12 */}
-          {productList.map((menu, index) => {
+          {productList?.map((menu, index) => { //유효성 검사 -> 옵셔닝 체이닝, state를 없앴으므로 초기값이 undefined
             return (
               <Col key={index} lg={4} md={6} sm={12} xs={12}>
                 {/* 화면에 따른 반응형 */}

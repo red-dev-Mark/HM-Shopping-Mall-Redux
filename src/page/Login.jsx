@@ -1,14 +1,20 @@
 import { Button, Col, Container, Form } from "react-bootstrap";
-import React from "react";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { authenticate } from "../redux/actions/authenticateAction";
 
 export default function Login({ setAuthenticate }) {
+  const [id, setId] = useState();
+  const [password, setPassword] = useState();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
 
   const loginUser = (event) => {
     // console.log("login!!!"); //버튼을 누르자 아주 잠깐 콘솔창에 뜬다. 왜냐하면 새로고침되기 때문에
     event.preventDefault(); //이제 새로고침이 안 된다.
-    setAuthenticate(true);
+    // setAuthenticate(true);
+    dispatch(authenticate.login(id, password));
     navigate("/");
   };
   return (
@@ -25,9 +31,11 @@ export default function Login({ setAuthenticate }) {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
+              // Control은 onChange 이벤트!
               type="email"
               placeholder="Enter email"
               autoComplete="current-password"
+              onChange={(event) => setPassword(event.target.value)}
             />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
