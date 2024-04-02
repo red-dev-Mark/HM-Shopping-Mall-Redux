@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import ProductCard from "../components/ProductCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
@@ -27,7 +27,9 @@ export default function ProductAll() {
     };
 
     getProducts();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [query]);
+
   // 빈 []이면 처음 한번만 렌더링 -> 다시 내부 코드(함수호출)하지 않음
   // query를 넣어줌 -> query가 바뀌면 다시 호출해줘
 
@@ -61,7 +63,8 @@ export default function ProductAll() {
       <Container>
         <Row>
           {/* MAX : 12 */}
-          {productList?.map((menu, index) => { //유효성 검사 -> 옵셔닝 체이닝, state를 없앴으므로 초기값이 undefined
+          {productList?.map((menu, index) => {
+            //유효성 검사 -> 옵셔닝 체이닝, state를 없앴으므로 초기값이 undefined
             return (
               <Col key={index} lg={4} md={6} sm={12} xs={12}>
                 {/* 화면에 따른 반응형 */}

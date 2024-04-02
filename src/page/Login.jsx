@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { authenticate } from "../redux/actions/authenticateAction";
 
 export default function Login({ setAuthenticate }) {
-  const [id, setId] = useState();
+  const [id] = useState();
   const [password, setPassword] = useState();
   const dispatch = useDispatch();
   const navigate = useNavigate();
