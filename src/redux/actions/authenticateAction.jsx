@@ -8,4 +8,11 @@ function login(id, password) {
   };
 }
 
-export const authenticateAction = { login };
+function logout(authenticate) {
+  return (dispatch) => {
+    dispatch({ type: "LOGOUT_SUCCESS", payload: { authenticate } });
+    // console.log("LOGIN_SUCCESS"); // -> 잘 출력됨
+  };
+}
+
+export const authenticateAction = { login, logout };

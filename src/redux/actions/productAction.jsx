@@ -18,6 +18,20 @@ function getProducts(searchQuery) {
   };
 }
 
-export const productAction = { getProducts };
+function getProductDetail(id) {
+  return async (dispatch) => {
+    let url = new URL(
+      `https://my-json-server.typicode.com/redhero8830/shopping-mall-server/products/${id}`
+    );
+    const response = await fetch(url);
+    const data = await response.json();
+
+    dispatch({ type: "GET_PRODUCT_DETAIL_SUCCESS", payload: { data } });
+  };
+}
+
+export const productAction = { getProducts, getProductDetail };
 //default가 아닌, const!
 //미들웨어 함수가 여러 개 -> 객체에 함수들을 담아서 전달
+
+//이렇게 미들웨어 함수로 만들면, 이 함수를 다른 곳에서도 사용 가능 (재사용성 굿)

@@ -11,7 +11,7 @@ function authenticate(state = initialStore, action) {
 
   switch (type) {
     case "LOGIN_SUCCESS":
-      console.log("LOGIN_SUCCESS"); //콘솔창에 안 나옴 -> 리듀서까지 도달하지 못함
+      // console.log("LOGIN_SUCCESS"); //콘솔창에 안 나옴 -> 리듀서까지 도달하지 못함
       //그 이유는 스토어의 createStore에서 productReducer만 적용 -> 스토어로 가서 합쳐보자
 
       return {
@@ -19,6 +19,12 @@ function authenticate(state = initialStore, action) {
         id: payload.id,
         password: payload.password,
         authenticate: true,
+      };
+
+    case "LOGOUT_SUCCESS":
+      return {
+        ...state,
+        authenticate: false,
       };
 
     default:

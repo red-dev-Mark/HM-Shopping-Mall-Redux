@@ -6,7 +6,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
-export default function Login({ setAuthenticate }) {
+export default function Login() {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
 

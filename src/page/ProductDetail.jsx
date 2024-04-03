@@ -1,22 +1,23 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { Button, Col, Container, Row } from "react-bootstrap";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { productAction } from "../redux/actions/productAction";
 
 export default function ProductDetail() {
-  let { id } = useParams();
-  const [product, setProduct] = useState(null);
+  const dispatch = useDispatch();
+  const product = useSelector((state) => state.product.product);
 
+  let { id } = useParams();
+  // const [product, setProduct] = useState(null);
+
+  //useEffect를 사용하지 않으면, id가 바뀌어도(다른 상품을 눌러도) 같은 디테일 페이지만 보여줌
   useEffect(() => {
     const getProductDetail = async () => {
-      let url = new URL(
-        `https://my-json-server.typicode.com/redhero8830/shopping-mall-server/products/${id}`
-      );
-      const response = await fetch(url);
-      const data = await response.json();
-      // console.log(data);
-      setProduct(data);
+      dispatch(productAction.getProductDetail(id));
     };
     getProductDetail();
+    // eslint-disable-next-line
   }, [id]); //props로 { id }를 넘기거나, useParams()의 id를 갖고와도 의존성 불안정..
 
   // eslint-disable-next-line react-hooks/exhaustive-deps

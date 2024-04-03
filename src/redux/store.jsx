@@ -5,11 +5,13 @@ import rootReducer from "./reducers";
 // import rootReducer from './reducers.index' (index 파일이 기본)
 // import productReducer from "./reducers/productReducer"; 이건 이제 필요 no
 
+//DevTool
 import { composeWithDevTools } from "@redux-devtools/extension";
 
 //리듀서 파일이 여러 개면, 합치고 스토어에 올려줘야 함 -> combineReducers(reducers) 함수를 사용하면 됨 (이건 index.js!)
 let store = createStore(
   rootReducer,
+  //DevTool은 함수, 이 함수 안에 미들웨어를 넣어줌
   composeWithDevTools(applyMiddleware(thunk))
 );
 

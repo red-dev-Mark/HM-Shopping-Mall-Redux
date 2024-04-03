@@ -2,9 +2,14 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { authenticateAction } from "../redux/actions/authenticateAction";
 
-export default function Navbar({ authenticate, setAuthenticate }) {
+export default function Navbar() {
   const menuList = ["H&M Home", "남성", "여성", "아동", "Sale"];
+
+  const dispatch = useDispatch();
+  const authenticate = useSelector((state) => state.auth.authenticate);
 
   const navigate = useNavigate();
 
@@ -15,7 +20,8 @@ export default function Navbar({ authenticate, setAuthenticate }) {
     navigate("/login");
   };
   const getLogout = () => {
-    setAuthenticate(false);
+    dispatch(authenticateAction.logout(authenticate));
+    // setAuthenticate(false);
     alert("Logout되었습니다:)");
   };
   // const goToDetail = () => {
