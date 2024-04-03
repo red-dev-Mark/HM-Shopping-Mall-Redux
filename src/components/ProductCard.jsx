@@ -1,10 +1,7 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 
 export default function ProductCard({ item }) {
-  const productList = useSelector((state) => state.product.productList);
-
   const navigate = useNavigate();
   const showDetail = () => {
     navigate(`/product/${item.id}`);
