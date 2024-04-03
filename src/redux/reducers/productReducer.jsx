@@ -1,4 +1,7 @@
-let initialStore = {};
+//상품을 가져오는 리듀서
+let initialStore = {
+  productList: [],
+};
 
 function productReducer(state = initialStore, action) {
   let { type, payload } = action;

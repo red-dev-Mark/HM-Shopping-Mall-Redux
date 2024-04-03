@@ -1,35 +1,37 @@
-import React, { useEffect } from "react";
-import ProductCard from "../components/ProductCard";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import { Container, Row, Col } from "react-bootstrap";
-import { useSearchParams } from "react-router-dom";
-import { useNavigate } from "react-router-dom";
 
 import { productAction } from "../redux/actions/productAction";
+import ProductCard from "../components/ProductCard";
+
+import React, { useEffect } from "react";
+import { useSearchParams, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function ProductAll() {
-  // const [productList] = useState([]);
+  //이제 상태함수 필요 No, 리듀서로 작업한 스토어 속 상태를 가져옴
   const productList = useSelector((state) => state.product.productList);
-  // const [query, setQuery] = useSearchParams(); 배포를 위한 상태함수 삭제
+
   const [query] = useSearchParams();
 
   const dispatch = useDispatch();
 
+  const getProducts = () => {
+    let searchQuery = query.get("q") || "";
+
+    //여기서 바로 액션을 담으면 미들웨어를 거치지 않고 스토어로 감
+    //-> productAction의 getProduct 미들웨어 함수를 거쳐서 가야함
+    dispatch(productAction.getProducts(searchQuery)); //여기서 ()를 붙이는 이유 -> 없으면 함수 작동 X
+    //인자 없다면 빈 배열이 콘솔에 출력
+  };
+
   const navigate = useNavigate();
 
   useEffect(() => {
-    const getProducts = () => {
-      let searchQuery = query.get("q") || ""; //|| "";가 없으면 화면에 안 나옴
-      console.log(searchQuery);
-      dispatch(productAction.getProducts(searchQuery)); //여기서 action을 던져주면 바로 스토어로 감 -> 미들웨어를 거쳐야 함
-    };
-
     getProducts();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line
   }, [query]);
-
   // 빈 []이면 처음 한번만 렌더링 -> 다시 내부 코드(함수호출)하지 않음
   // query를 넣어줌 -> query가 바뀌면 다시 호출해줘
 
@@ -63,8 +65,7 @@ export default function ProductAll() {
       <Container>
         <Row>
           {/* MAX : 12 */}
-          {productList?.map((menu, index) => {
-            //유효성 검사 -> 옵셔닝 체이닝, state를 없앴으므로 초기값이 undefined
+          {productList.map((menu, index) => {
             return (
               <Col key={index} lg={4} md={6} sm={12} xs={12}>
                 {/* 화면에 따른 반응형 */}

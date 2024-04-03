@@ -1,20 +1,32 @@
 import { Button, Col, Container, Form } from "react-bootstrap";
+
+import { authenticateAction } from "../redux/actions/authenticateAction";
+
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { authenticate } from "../redux/actions/authenticateAction";
 
 export default function Login({ setAuthenticate }) {
-  const [id] = useState();
-  const [password, setPassword] = useState();
-  const dispatch = useDispatch();
+  const [id, setId] = useState("");
+  const [password, setPassword] = useState("");
+
   const navigate = useNavigate();
 
+  const dispatch = useDispatch();
+
+  // 사실 로그인 함수가 async는 아니라, 미들웨어로 굳이 안 보내도 됨
+  //로그인을 시도하면 id, password, authenticate 정보 변경!
   const loginUser = (event) => {
-    // console.log("login!!!"); //버튼을 누르자 아주 잠깐 콘솔창에 뜬다. 왜냐하면 새로고침되기 때문에
-    event.preventDefault(); //이제 새로고침이 안 된다.
+    event.preventDefault();
+
+    // 이제 상태 업데이트 함수 필요 없음
     // setAuthenticate(true);
-    dispatch(authenticate.login(id, password));
+
+    //dispatch는 함수를 호출해야 함 (미들웨어 함수!)
+    //로그인 미들웨어 함수 만들자!
+    //그냥 호출이 아닌, id/password 값을 들고 간다.
+    dispatch(authenticateAction.login(id, password));
+
     navigate("/");
   };
   return (
@@ -31,11 +43,12 @@ export default function Login({ setAuthenticate }) {
           <Form.Group className="mb-3" controlId="formBasicEmail">
             <Form.Label>Email address</Form.Label>
             <Form.Control
-              // Control은 onChange 이벤트!
               type="email"
               placeholder="Enter email"
               autoComplete="current-password"
-              onChange={(event) => setPassword(event.target.value)}
+              onChange={(event) => {
+                setId(event.target.value);
+              }}
             />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
@@ -48,6 +61,9 @@ export default function Login({ setAuthenticate }) {
               type="password"
               placeholder="Password"
               autoComplete="current-password"
+              onChange={(event) => {
+                setPassword(event.target.value);
+              }}
             />
           </Form.Group>
           <Form.Group className="mb-3" controlId="formBasicCheckbox">
