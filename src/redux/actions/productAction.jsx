@@ -25,6 +25,7 @@ function getProductDetail(id) {
     );
     const response = await fetch(url);
     const data = await response.json();
+    console.log(data);
 
     dispatch({ type: "GET_PRODUCT_DETAIL_SUCCESS", payload: { data } });
   };

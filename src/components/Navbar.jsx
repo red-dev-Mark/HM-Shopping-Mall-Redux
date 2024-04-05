@@ -20,7 +20,7 @@ export default function Navbar() {
     navigate("/login");
   };
   const getLogout = () => {
-    dispatch(authenticateAction.logout(authenticate));
+    dispatch(authenticateAction.logout());
     // setAuthenticate(false);
     alert("Logout되었습니다:)");
   };

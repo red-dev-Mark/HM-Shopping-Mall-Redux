@@ -31,7 +31,7 @@ export default function ProductAll() {
   useEffect(() => {
     getProducts();
     // eslint-disable-next-line
-  }, [query]);
+  }, [dispatch, query]);
   // 빈 []이면 처음 한번만 렌더링 -> 다시 내부 코드(함수호출)하지 않음
   // query를 넣어줌 -> query가 바뀌면 다시 호출해줘
 

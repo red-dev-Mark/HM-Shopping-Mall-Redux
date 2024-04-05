@@ -8,10 +8,9 @@ function login(id, password) {
   };
 }
 
-function logout(authenticate) {
+function logout() {
   return (dispatch) => {
-    dispatch({ type: "LOGOUT_SUCCESS", payload: { authenticate } });
-    // console.log("LOGIN_SUCCESS"); // -> 잘 출력됨
+    dispatch({ type: "LOGOUT_SUCCESS" });
   };
 }
 

@@ -15,7 +15,7 @@ export default function ProductDetail() {
   useEffect(() => {
     const getProductDetail = async () => {
       dispatch(productAction.getProductDetail(id));
-    };
+    }; 
     getProductDetail();
     // eslint-disable-next-line
   }, [id]); //props로 { id }를 넘기거나, useParams()의 id를 갖고와도 의존성 불안정..
