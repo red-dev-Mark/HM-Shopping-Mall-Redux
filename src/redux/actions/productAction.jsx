@@ -11,7 +11,7 @@ function getProducts(searchQuery) {
     let response = await fetch(url);
     let data = await response.json();
 
-    // console.log(data);
+    console.log(data);
 
     //이제 여기서 리듀서로 액션 전달!
     dispatch({ type: "GET_PRODUCT_SUCCESS", payload: { data } });
